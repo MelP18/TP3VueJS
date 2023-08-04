@@ -1,87 +1,98 @@
 <template>
-    <div class="details__article">
-        <!-- <div class="close__modal">
-            <span class="close"></span>
-        </div> -->
-        <div class="detail__article__content" v-if="articles">
-            <div class="article__title">
-                <h4>{{ title }}</h4>
-            </div>
-            <div class="article__description">
-                <p>{{ description }}</p>
+    <div class="article">
+        <div class="container">
+            <div class="detail__article" v-if="article">
+                <div class="article__img">
+                    <img :src="article.image" alt="">
+                </div>
+                <div class="detail__article__content">
+                    <div class="article__title">
+                        <h4>{{ article.title }}</h4>
+                    </div>
+                    <div class="article__description">
+                        <p>{{ article.description }}</p>
+                    </div>
+                    <div class="article__author">
+                        <p>{{ article.author }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <Footer />
 </template>
 
 <script lang="ts" setup>
-import {useRoute} from 'vue-router'
-import { articles } from '@/components/Article.vue';
+import Footer from '@/components/Footer.vue';
+import { ref } from 'vue';
+import { useRoute } from 'vue-router'
+import { articles } from '@/database/articles'
+import { onMounted } from 'vue';
 const route = useRoute()
+const id = route.params.id
+const article = ref()
+
+
+
+onMounted(() => {
+    const art = articles.find(item => item.id == Number(id))
+    if (art) {
+        article.value = art
+    }
+})
+
 
 </script>
 <style scoped>
-.details__article {
-    position: absolute;
+.article {
+    height: calc(100vh - (90px + 46px + 60px));
+    padding: 25px 0;
+    overflow-y: scroll;
+    z-index: -1;
+    background-color: rgb(204, 199, 199);
+    padding: 15px;
+}
+
+.detail__article {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    padding: 15px 0;
+}
+
+.article__img {
+    display: flex;
+    justify-content: center;
+    width: 350px;
+    height: 350px;
+    padding: 10px;
+    border-radius: 100%;
+    border: 1px solid rgb(59, 2, 2);
+}
+
+.article__img img {
     width: 100%;
     height: 100%;
-    padding: 25px;
-    z-index: 10;
-    top: 0;
-    background-color: rgba(134, 6, 10, 0.37);
-    border: 1.5px solid rgb(238, 240, 240);
-    box-shadow: 0 8px 35px 0 rgba(134, 6, 10, 0.37);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    border-radius: 35px;
-    opacity: 0;
-    visibility: hidden;
-    transition: 1s;
-    overflow-x: scroll;
-    overflow-x: hidden;
+    border-radius: 100%;
+    object-fit: cover;
 }
-
-.close__modal {
-    position: absolute;
-    display: block;
-    right: 50px;
-    top: 10px;
+.detail__article__content {
+    width: calc(100% - 500px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
 }
-
-.close__modal .close {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: white;
+.article__title{
+    text-align: center;
 }
-
-.close__modal .close:hover {
-    background-color: rgb(91, 4, 4);
+.article__description p{
+    line-height: 25px;
+    text-align: justify;
 }
-
-.close__modal:hover span::after,
-.close__modal:hover span:before {
-    background-color: white;
-}
-
-.close::after,
-.close::before {
-    content: "";
-    position: absolute;
-    background-color: rgb(91, 4, 4);
-    width: 25px;
-    height: 3px;
-    top: 50%;
-    left: 50%;
-}
-
-.close::after {
-    transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-.close::before {
-    transform: translate(-50%, -50%) rotate(45deg);
+.article__author {
+    display: flex;
+    justify-content: right;
 }
 </style>
