@@ -68,7 +68,6 @@ a.active a:hover {
 /*=================================>HEADER<===========================*/
 header {
     background-color:white ;
-    box-shadow: 0 0 5px rgb(186, 182, 182);
     border-radius: 35px 35px 0 0;
 }
 .header__content {
