@@ -3,7 +3,7 @@
         <h1>NOS ARTICLES</h1>
         <div class="article__content">
             <ul class="article__list">
-                <li class="article__list__item {{ item.id }}" v-for="item in articles">
+                <li  class="article__list__item"  v-for="item in articles" :key="item.id">
                     <div class="article__img">
                         <img :src="item.image" alt="">
                     </div>
@@ -14,7 +14,7 @@
                         <p>{{ item.Summary }}</p>
                     </div>
                     <div class="btn__see__more">
-                        <a href="#">Voir Plus</a>
+                        <a href="#">Voir plus</a>
                     </div>
                 </li>
             </ul>
@@ -24,21 +24,22 @@
 
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import image1 from '@/assets/Images/image(1).png'
-import image2 from '@/assets/Images/image(7).png'
-import image3 from '@/assets/Images/image(4).png'
-import image4 from '@/assets/Images/image(6).png'
-import image5 from '@/assets/Images/image(4).png'
-import image6 from '@/assets/Images/image(6).png'
-import image7 from '@/assets/Images/smiley.png'
-import image8 from '@/assets/Images/image(2).png'
+import { ref, watch } from 'vue'
+import image1 from '@/assets/Images/1.jpg'
+import image2 from '@/assets/Images/2.jpg'
+import image3 from '@/assets/Images/3.jpg'
+import image4 from '@/assets/Images/4.jpeg'
+import image5 from '@/assets/Images/5.jpg'
+import image6 from '@/assets/Images/6.jpg'
+import image7 from '@/assets/Images/7.jpeg'
+import image8 from '@/assets/Images/8.jpeg'
+
 
 /* import DetailsArticle from './DetailsArticle.vue'; */
 
 const articles = ref([
     {
-        id: 1,
+        id: 9651,
         image: image1,
         title: "amet consectetur amet consectetur amet consectetur",
         Summary: "Voluptatem magnam labore illum consequuntur ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo consequatur ipsa dicta. Perferendis.",
@@ -46,7 +47,7 @@ const articles = ref([
         author: "DOSSOU Pauline"
     },
     {
-        id: 2,
+        id: 9245,
         image: image2,
         title: "amet consectetur amet consectetur amet consectetur",
         Summary: "Voluptatem magnam labore illum consequuntur ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo consequatur ipsa dicta. Perferendis.",
@@ -54,7 +55,7 @@ const articles = ref([
         author: "DOSSOU Pauline"
     },
     {
-        id: 3,
+        id: 9671,
         image: image3,
         title: "amet consectetur amet consectetur amet consectetur",
         Summary: "Voluptatem magnam labore illum consequuntur ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo consequatur ipsa dicta. Perferendis.",
@@ -62,7 +63,7 @@ const articles = ref([
         author: "DOSSOU Pauline"
     },
     {
-        id: 4,
+        id: 8715,
         image: image4,
         title: "amet consectetur amet consectetur amet consectetur",
         Summary: "Voluptatem magnam labore illum consequuntur ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo consequatur ipsa dicta. Perferendis.",
@@ -70,7 +71,7 @@ const articles = ref([
         author: "DOSSOU Pauline"
     },
    {
-        id: 5,
+        id: 1455,
         image: image5,
         title: "amet consectetur amet consectetur amet consectetur",
         Summary: "Voluptatem magnam labore illum consequuntur ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo consequatur ipsa dicta. Perferendis.",
@@ -78,7 +79,7 @@ const articles = ref([
         author: "DOSSOU Pauline"
     },
     {
-        id: 6,
+        id: 9816,
         image: image6,
         title: "amet consectetur amet consectetur amet consectetur",
         Summary: "Voluptatem magnam labore illum consequuntur ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo consequatur ipsa dicta. Perferendis.",
@@ -86,7 +87,7 @@ const articles = ref([
         author: "DOSSOU Pauline"
     },
     {
-        id: 7,
+        id: 7784,
         image: image7,
         title: "amet consectetur amet consectetur amet consectetur",
         Summary: "Voluptatem magnam labore illum consequuntur ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo consequatur ipsa dicta. Perferendis.",
@@ -94,7 +95,7 @@ const articles = ref([
         author: "DOSSOU Pauline"
     },
     {
-        id: 8,
+        id: 1468,
         image: image8,
         title: "amet consectetur amet consectetur amet consectetur",
         Summary: "Voluptatem magnam labore illum consequuntur ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo consequatur ipsa dicta. Perferendis.",
@@ -106,6 +107,16 @@ const articles = ref([
 
 
 
+/* type key = number
+const pid = ref<key>()
+const emits = defineEmits(['details'])
+watch(pid, (value)=>{
+    emits('details',value ) 
+})
+function see(){
+    console.log('okl');
+    console.log(document.querySelector('.article__list__item '));
+} */
 </script>
 
 <style scoped>
@@ -113,6 +124,7 @@ const articles = ref([
     display: flex;
     flex-direction: column;
     gap: 18px;
+
 }
 
 .articles h1 {
@@ -146,7 +158,7 @@ const articles = ref([
 .article__img img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill;
 }
 
 .article_title {
@@ -170,9 +182,6 @@ const articles = ref([
     padding: 0 15px;
 }
 
-.btn__see__more {
-    padding: 0 15px;
-}
 
 .btn__see__more a {
     display: inline-block;

@@ -1,24 +1,24 @@
 <template>
     <div class="details__article">
-        <div class="close__modal">
+        <!-- <div class="close__modal">
             <span class="close"></span>
-        </div>
-        <div class="detail__article__content">
+        </div> -->
+        <div class="detail__article__content" v-if="articles">
             <div class="article__title">
-                <h4>lore lorem lorem lorem lorem</h4>
+                <h4>{{ title }}</h4>
             </div>
-            <div class="article__summary">
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem magnam labore illum consequuntur
-                    ratione? Fugiat eos praesentium amet. Iusto magni, quisquam minima obcaecati repudiandae cupiditate quo
-                    consequatur ipsa dicta. Perferendis.</p>
+            <div class="article__description">
+                <p>{{ description }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
+import {useRoute} from 'vue-router'
+import { articles } from '@/components/Article.vue';
+const route = useRoute()
 
-import Header from '@/components/Header.vue'
 </script>
 <style scoped>
 .details__article {
@@ -83,4 +83,5 @@ import Header from '@/components/Header.vue'
 
 .close::before {
     transform: translate(-50%, -50%) rotate(45deg);
-}</style>
+}
+</style>
