@@ -13,9 +13,7 @@ import Header from '@/components/Header.vue';
 
 
 <style>
-.header{
-    box-shadow: 0 0 5px rgb(186, 182, 182);
-}
+
 </style>
 
 

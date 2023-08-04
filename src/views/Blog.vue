@@ -4,7 +4,7 @@
             <!-- <Header /> -->
             <main>
                <div class="container">
-                    <Article />
+                    <Articles />
                 </div> 
             </main>
             <Footer/>
@@ -15,14 +15,13 @@
 <script lang="ts" setup>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue'
-import Article from '@/components/Article.vue';
+import Articles from '@/components/Articles.vue';
 import DetailsArticle from '@/views/DetailsArticle.vue';
 
-function modal(){   
-}
+
 </script>
 
-<style>
+<style> 
 body {
     overflow-x: hidden;
     padding: 30px;
